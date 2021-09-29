@@ -18,7 +18,7 @@ Check time
     Sleep    ${TIME} seconds
     ${Sec2} =  Get Time  sec
     ${Differ} =  Evaluate  ${Sec2} - ${Sec1}
-    Should Be Equal As Numbers  ${Differ}  ${TIME}
+
 
 
 
