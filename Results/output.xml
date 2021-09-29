@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.9.6 on darwin)" generated="20210929 22:21:31.442" rpa="false" schemaversion="2">
+<suite id="s1" name="Calculations" source="/Users/hannamaniak/Desktop/WORK/development/robot-scripts/HannaProject/tests/calculations.robot">
+<test id="s1-t1" name="Check time">
+<kw name="Get Time" library="BuiltIn">
+<var>${Sec1}</var>
+<arg>sec</arg>
+<doc>Returns the given time in the requested format.</doc>
+<msg timestamp="20210929 22:21:31.743" level="INFO">${Sec1} = 31</msg>
+<status status="PASS" starttime="20210929 22:21:31.742" endtime="20210929 22:21:31.743"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>${TIME} seconds</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210929 22:21:41.744" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20210929 22:21:31.743" endtime="20210929 22:21:41.744"/>
+</kw>
+<kw name="Get Time" library="BuiltIn">
+<var>${Sec2}</var>
+<arg>sec</arg>
+<doc>Returns the given time in the requested format.</doc>
+<msg timestamp="20210929 22:21:41.745" level="INFO">${Sec2} = 41</msg>
+<status status="PASS" starttime="20210929 22:21:41.745" endtime="20210929 22:21:41.745"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${Differ}</var>
+<arg>${Sec2} - ${Sec1}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20210929 22:21:41.746" level="INFO">${Differ} = 10</msg>
+<status status="PASS" starttime="20210929 22:21:41.745" endtime="20210929 22:21:41.746"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${Differ}</arg>
+<arg>${TIME}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20210929 22:21:41.747" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210929 22:21:41.746" endtime="20210929 22:21:41.747"/>
+</kw>
+<status status="PASS" starttime="20210929 22:21:31.742" endtime="20210929 22:21:41.747"/>
+</test>
+<status status="PASS" starttime="20210929 22:21:31.446" endtime="20210929 22:21:41.748"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Calculations">Calculations</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
