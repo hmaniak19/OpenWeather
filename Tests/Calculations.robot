@@ -36,8 +36,8 @@ The sum of ${First_value} and ${Second_value} should be ${Expected}
 
 Verify that ${Future_date} differs from ${Current_date} by ${Waiting_time}
     ${Differ} =  Subtract Date From Date   ${Future_date}  ${Current_date}
-    ${Int_differ} =  Evaluate  int(abs(${Differ}))
-    Should Be Equal As Integers    ${Int_differ}  ${Waiting_time}
+    ${Abs_differ} =  Evaluate  abs(${Differ})
+    Should Be Equal As Integers    ${Abs_differ}  ${Waiting_time}
 
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1 (Python 3.9.6 on darwin)" generated="20210930 23:13:48.214" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1 (Python 3.9.6 on darwin)" generated="20210930 23:55:28.504" rpa="false" schemaversion="2">
 <suite id="s1" name="Calculations" source="/Users/hannamaniak/Desktop/WORK/development/robot-scripts/Calculations/tests/calculations.robot">
 <test id="s1-t1" name="Check the result of calculation">
 <kw name="The sum of 1 and 1 should be 2" sourcename="The sum of ${First_value} and ${Second_value} should be ${Expected}">
@@ -7,62 +7,62 @@
 <var>${Result}</var>
 <arg>${First_value} + ${Second_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210930 23:13:48.746" level="INFO">${Result} = 2</msg>
-<status status="PASS" starttime="20210930 23:13:48.745" endtime="20210930 23:13:48.746"/>
+<msg timestamp="20210930 23:55:28.792" level="INFO">${Result} = 2</msg>
+<status status="PASS" starttime="20210930 23:55:28.792" endtime="20210930 23:55:28.792"/>
 </kw>
 <kw name="Should Be Equal As Numbers" library="BuiltIn">
 <arg>${Result}</arg>
 <arg>${Expected}</arg>
 <doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<msg timestamp="20210930 23:13:48.747" level="INFO">Argument types are:
+<msg timestamp="20210930 23:55:28.792" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20210930 23:13:48.746" endtime="20210930 23:13:48.747"/>
+<status status="PASS" starttime="20210930 23:55:28.792" endtime="20210930 23:55:28.792"/>
 </kw>
-<status status="PASS" starttime="20210930 23:13:48.744" endtime="20210930 23:13:48.747"/>
+<status status="PASS" starttime="20210930 23:55:28.791" endtime="20210930 23:55:28.793"/>
 </kw>
 <kw name="The sum of 3 and 9 should be 12" sourcename="The sum of ${First_value} and ${Second_value} should be ${Expected}">
 <kw name="Evaluate" library="BuiltIn">
 <var>${Result}</var>
 <arg>${First_value} + ${Second_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210930 23:13:48.749" level="INFO">${Result} = 12</msg>
-<status status="PASS" starttime="20210930 23:13:48.748" endtime="20210930 23:13:48.749"/>
+<msg timestamp="20210930 23:55:28.793" level="INFO">${Result} = 12</msg>
+<status status="PASS" starttime="20210930 23:55:28.793" endtime="20210930 23:55:28.794"/>
 </kw>
 <kw name="Should Be Equal As Numbers" library="BuiltIn">
 <arg>${Result}</arg>
 <arg>${Expected}</arg>
 <doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<msg timestamp="20210930 23:13:48.750" level="INFO">Argument types are:
+<msg timestamp="20210930 23:55:28.794" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20210930 23:13:48.749" endtime="20210930 23:13:48.750"/>
+<status status="PASS" starttime="20210930 23:55:28.794" endtime="20210930 23:55:28.794"/>
 </kw>
-<status status="PASS" starttime="20210930 23:13:48.748" endtime="20210930 23:13:48.751"/>
+<status status="PASS" starttime="20210930 23:55:28.793" endtime="20210930 23:55:28.794"/>
 </kw>
 <doc>We verify sum of two values</doc>
-<status status="PASS" starttime="20210930 23:13:48.743" endtime="20210930 23:13:48.751"/>
+<status status="PASS" starttime="20210930 23:55:28.790" endtime="20210930 23:55:28.794"/>
 </test>
 <test id="s1-t2" name="Check the time differ">
 <kw name="Get Current Date" library="DateTime">
 <var>${current_date_time}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20210930 23:13:48.754" level="INFO">${current_date_time} = 2021-09-30 23:13:48</msg>
-<status status="PASS" starttime="20210930 23:13:48.754" endtime="20210930 23:13:48.754"/>
+<msg timestamp="20210930 23:55:28.796" level="INFO">${current_date_time} = 2021-09-30 23:55:28</msg>
+<status status="PASS" starttime="20210930 23:55:28.795" endtime="20210930 23:55:28.796"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>${WAITING_TIME_SECS}</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20210930 23:13:58.756" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20210930 23:13:48.755" endtime="20210930 23:13:58.756"/>
+<msg timestamp="20210930 23:55:38.797" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20210930 23:55:28.796" endtime="20210930 23:55:38.797"/>
 </kw>
 <kw name="Get Current Date" library="DateTime">
 <var>${new_date_time}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20210930 23:13:58.757" level="INFO">${new_date_time} = 2021-09-30 23:13:58</msg>
-<status status="PASS" starttime="20210930 23:13:58.757" endtime="20210930 23:13:58.758"/>
+<msg timestamp="20210930 23:55:38.798" level="INFO">${new_date_time} = 2021-09-30 23:55:38</msg>
+<status status="PASS" starttime="20210930 23:55:38.798" endtime="20210930 23:55:38.798"/>
 </kw>
 <kw name="Verify that ${current_date_time} differs from ${new_date_time} by ${WAITING_TIME_SECS}" sourcename="Verify that ${Future_date} differs from ${Current_date} by ${Waiting_time}">
 <kw name="Subtract Date From Date" library="DateTime">
@@ -70,31 +70,31 @@
 <arg>${Future_date}</arg>
 <arg>${Current_date}</arg>
 <doc>Subtracts date from another date and returns time between.</doc>
-<msg timestamp="20210930 23:13:58.770" level="INFO">${Differ} = -10.0</msg>
-<status status="PASS" starttime="20210930 23:13:58.759" endtime="20210930 23:13:58.770"/>
+<msg timestamp="20210930 23:55:38.804" level="INFO">${Differ} = -10.0</msg>
+<status status="PASS" starttime="20210930 23:55:38.800" endtime="20210930 23:55:38.804"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
-<var>${Int_differ}</var>
-<arg>int(abs(${Differ}))</arg>
+<var>${Abs_differ}</var>
+<arg>abs(${Differ})</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210930 23:13:58.771" level="INFO">${Int_differ} = 10</msg>
-<status status="PASS" starttime="20210930 23:13:58.770" endtime="20210930 23:13:58.771"/>
+<msg timestamp="20210930 23:55:38.805" level="INFO">${Abs_differ} = 10.0</msg>
+<status status="PASS" starttime="20210930 23:55:38.805" endtime="20210930 23:55:38.805"/>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${Int_differ}</arg>
+<arg>${Abs_differ}</arg>
 <arg>${Waiting_time}</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20210930 23:13:58.772" level="INFO">Argument types are:
-&lt;class 'int'&gt;
+<msg timestamp="20210930 23:55:38.806" level="INFO">Argument types are:
+&lt;class 'float'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20210930 23:13:58.771" endtime="20210930 23:13:58.772"/>
+<status status="PASS" starttime="20210930 23:55:38.805" endtime="20210930 23:55:38.806"/>
 </kw>
-<status status="PASS" starttime="20210930 23:13:58.758" endtime="20210930 23:13:58.772"/>
+<status status="PASS" starttime="20210930 23:55:38.799" endtime="20210930 23:55:38.806"/>
 </kw>
-<doc>We get current time, wait for some time and check that current time differs from the first one by waiting time</doc>
-<status status="PASS" starttime="20210930 23:13:48.752" endtime="20210930 23:13:58.773"/>
+<doc>We get current time, wait for some time and check that new time differs from the first one by waiting time</doc>
+<status status="PASS" starttime="20210930 23:55:28.795" endtime="20210930 23:55:38.806"/>
 </test>
-<status status="PASS" starttime="20210930 23:13:48.217" endtime="20210930 23:13:58.773"/>
+<status status="PASS" starttime="20210930 23:55:28.505" endtime="20210930 23:55:38.807"/>
 </suite>
 <statistics>
 <total>
