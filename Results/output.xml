@@ -1,109 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1 (Python 3.9.6 on darwin)" generated="20210930 23:59:21.616" rpa="false" schemaversion="2">
-<suite id="s1" name="Calculations" source="/Users/hannamaniak/Desktop/WORK/development/robot-scripts/Calculations/tests/calculations.robot">
-<test id="s1-t1" name="Check the result of calculation">
-<kw name="The Sum Of 1 And 1 Should Be 2" sourcename="The Sum Of ${First_value} And ${Second_value} Should Be ${Expected}">
-<kw name="Evaluate" library="BuiltIn">
-<var>${Result}</var>
-<arg>${First_value} + ${Second_value}</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210930 23:59:21.905" level="INFO">${Result} = 2</msg>
-<status status="PASS" starttime="20210930 23:59:21.904" endtime="20210930 23:59:21.905"/>
+<robot generator="Robot 4.1 (Python 3.9.6 on darwin)" generated="20211007 23:49:18.809" rpa="false" schemaversion="2">
+<suite id="s1" name="Openweathermap" source="/Users/hannamaniak/Desktop/WORK/development/robot-scripts/OpenWeather/tests/openweathermap.robot">
+<test id="s1-t1" name="Valid login">
+<kw name="Begin Web Test" library="CommonWeb" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211007 23:49:19.101" level="INFO">Opening browser 'ff' to base url 'about:blank'.</msg>
+<msg timestamp="20211007 23:49:19.103" level="INFO">Firefox driver log is always forced to to: /Users/hannamaniak/Desktop/WORK/development/robot-scripts/OpenWeather/results/geckodriver-37.log</msg>
+<status status="PASS" starttime="20211007 23:49:19.101" endtime="20211007 23:49:21.366"/>
 </kw>
-<kw name="Should Be Equal As Numbers" library="BuiltIn">
-<arg>${Result}</arg>
-<arg>${Expected}</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<msg timestamp="20210930 23:59:21.905" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20210930 23:59:21.905" endtime="20210930 23:59:21.905"/>
+<status status="PASS" starttime="20211007 23:49:19.100" endtime="20211007 23:49:21.367"/>
 </kw>
-<status status="PASS" starttime="20210930 23:59:21.904" endtime="20210930 23:59:21.905"/>
+<kw name="Sign in with valid credentials" library="LoginPage">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20211007 23:49:21.370" level="INFO">Opening url 'https://openweathermap.org/'</msg>
+<status status="PASS" starttime="20211007 23:49:21.369" endtime="20211007 23:49:24.143"/>
 </kw>
-<kw name="The Sum Of 3 And 9 Should Be 12" sourcename="The Sum Of ${First_value} And ${Second_value} Should Be ${Expected}">
-<kw name="Evaluate" library="BuiltIn">
-<var>${Result}</var>
-<arg>${First_value} + ${Second_value}</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210930 23:59:21.906" level="INFO">${Result} = 12</msg>
-<status status="PASS" starttime="20210930 23:59:21.906" endtime="20210930 23:59:21.906"/>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LOGIN_LOADER}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20211007 23:49:24.143" endtime="20211007 23:49:24.162"/>
 </kw>
-<kw name="Should Be Equal As Numbers" library="BuiltIn">
-<arg>${Result}</arg>
-<arg>${Expected}</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<msg timestamp="20210930 23:59:21.906" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20210930 23:59:21.906" endtime="20210930 23:59:21.906"/>
+<kw name="Wait Until Page Does Not Contain Element" library="SeleniumLibrary">
+<arg>${LOGIN_LOADER}</arg>
+<doc>Waits until the element ``locator`` disappears from the current page.</doc>
+<status status="PASS" starttime="20211007 23:49:24.163" endtime="20211007 23:49:28.766"/>
 </kw>
-<status status="PASS" starttime="20210930 23:59:21.905" endtime="20210930 23:59:21.907"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGN_IN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20211007 23:49:28.766" level="INFO">Clicking element '//*[@class="user-li"]/a'.</msg>
+<status status="PASS" starttime="20211007 23:49:28.766" endtime="20211007 23:49:31.081"/>
 </kw>
-<doc>We verify sum of two values</doc>
-<status status="PASS" starttime="20210930 23:59:21.903" endtime="20210930 23:59:21.907"/>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_LOCATOR}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20211007 23:49:31.081" endtime="20211007 23:49:31.091"/>
+</kw>
+<status status="PASS" starttime="20211007 23:49:21.368" endtime="20211007 23:49:31.091"/>
+</kw>
+<kw name="End Web Test" library="CommonWeb" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20211007 23:49:31.092" endtime="20211007 23:49:31.711"/>
+</kw>
+<status status="PASS" starttime="20211007 23:49:31.092" endtime="20211007 23:49:31.711"/>
+</kw>
+<status status="PASS" starttime="20211007 23:49:19.100" endtime="20211007 23:49:31.712"/>
 </test>
-<test id="s1-t2" name="Check the time differ">
-<kw name="Get Current Date" library="DateTime">
-<var>${Current_date_time}</var>
-<arg>result_format=%Y-%m-%d %H:%M:%S</arg>
-<doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20210930 23:59:21.908" level="INFO">${Current_date_time} = 2021-09-30 23:59:21</msg>
-<status status="PASS" starttime="20210930 23:59:21.908" endtime="20210930 23:59:21.908"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>${WAITING_TIME_SECS}</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20210930 23:59:31.911" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20210930 23:59:21.908" endtime="20210930 23:59:31.911"/>
-</kw>
-<kw name="Get Current Date" library="DateTime">
-<var>${New_date_time}</var>
-<arg>result_format=%Y-%m-%d %H:%M:%S</arg>
-<doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20210930 23:59:31.912" level="INFO">${New_date_time} = 2021-09-30 23:59:31</msg>
-<status status="PASS" starttime="20210930 23:59:31.912" endtime="20210930 23:59:31.912"/>
-</kw>
-<kw name="Verify That ${Current_date_time} Differs From ${New_date_time} By ${WAITING_TIME_SECS}" sourcename="Verify That ${Future_date} Differs From ${Current_date} By ${Waiting_time}">
-<kw name="Subtract Date From Date" library="DateTime">
-<var>${Differ}</var>
-<arg>${Future_date}</arg>
-<arg>${Current_date}</arg>
-<doc>Subtracts date from another date and returns time between.</doc>
-<msg timestamp="20210930 23:59:31.918" level="INFO">${Differ} = -10.0</msg>
-<status status="PASS" starttime="20210930 23:59:31.914" endtime="20210930 23:59:31.919"/>
-</kw>
-<kw name="Evaluate" library="BuiltIn">
-<var>${Abs_differ}</var>
-<arg>abs(${Differ})</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210930 23:59:31.920" level="INFO">${Abs_differ} = 10.0</msg>
-<status status="PASS" starttime="20210930 23:59:31.919" endtime="20210930 23:59:31.920"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${Abs_differ}</arg>
-<arg>${Waiting_time}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20210930 23:59:31.920" level="INFO">Argument types are:
-&lt;class 'float'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20210930 23:59:31.920" endtime="20210930 23:59:31.920"/>
-</kw>
-<status status="PASS" starttime="20210930 23:59:31.913" endtime="20210930 23:59:31.920"/>
-</kw>
-<doc>We get current time, wait for some time and check that new time differs from the first one by waiting time</doc>
-<status status="PASS" starttime="20210930 23:59:21.907" endtime="20210930 23:59:31.921"/>
-</test>
-<status status="PASS" starttime="20210930 23:59:21.618" endtime="20210930 23:59:31.922"/>
+<status status="PASS" starttime="20211007 23:49:18.811" endtime="20211007 23:49:31.712"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="2" fail="0" skip="0" id="s1" name="Calculations">Calculations</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Openweathermap">Openweathermap</stat>
 </suite>
 </statistics>
 <errors>
