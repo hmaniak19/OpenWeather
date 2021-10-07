@@ -1,1 +1,4 @@
 /venv
+/Results
+/.idea
+.DS_Store
