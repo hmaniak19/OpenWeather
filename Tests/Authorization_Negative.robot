@@ -1,9 +1,5 @@
 *** Settings ***
-Resource  ../Resources/PO/DesktopShared.robot
-Resource  ../Resources/PO/LoginPage.robot
-Resource  ../Resources/PO/TopNav.robot
-Resource  ../Resources/CommonWeb.robot
-Resource  ../Global.robot
+Resource  ../Tests_Imports.robot
 
 Test Setup  Begin Web Test
 Test Teardown  End Web Test

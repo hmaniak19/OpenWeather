@@ -1,7 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource  ./PO/DesktopShared.robot
-Resource  ../Global.robot
+Resource  ../Tests_Imports.robot
 
 
 *** Variables ***

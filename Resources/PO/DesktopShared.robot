@@ -1,6 +1,5 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource  ./TopNav.robot
 
 
 *** Variables ***
