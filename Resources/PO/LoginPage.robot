@@ -18,10 +18,14 @@ Populate Login Form And Sumbit
     Input Password  ${LOGIN PASSWORD_LOCATOR}  ${password}
     CLick Element  ${LOGIN_SUBMIT_LOCATOR}
 
+Verify Login Form Displayed
+    Wait Until Page Contains Element  ${LOGIN_USERNAME_LOCATOR}
+
 Verify Login Error Displayed
+    [Arguments]  ${expected_error_text}
     Wait Until Page Contains Element  ${LOGIN_ERROR_TEXT_LOCATOR}  timeout=10 seconds
-    ${login_error_text} =  get text  ${LOGIN_ERROR_TEXT_LOCATOR}
-    Should Be Equalas Strings  ${login_error_text}  Invalid Email or password.  ignore_case=true
+    ${login_error_text} =  Get Text  ${LOGIN_ERROR_TEXT_LOCATOR}
+    Should Be Equalas Strings  ${login_error_text}  ${expected_error_text}  ignore_case=true
 
 
 

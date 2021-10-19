@@ -16,9 +16,6 @@ Input New Username And Save
     Set Global Variable  ${NEW_USERNAME}  ${random_string}
     Input Text  ${USERNAME_LOCATOR}  ${NEW_USERNAME}
     CLick Element  ${USER_SETTINGS_SAVE_LOCATOR}
-    Verify Success Message Displayed
-
-Verify Success Message Displayed
     Wait Until Page Contains Element  ${USER_PROFILE_SUCCESS_ALERT}
     ${success_text} =  get text  ${USER_PROFILE_SUCCESS_ALERT}
     Should Be Equalas Strings  ${success_text}  Profile was updated successfully  ignore_case=true

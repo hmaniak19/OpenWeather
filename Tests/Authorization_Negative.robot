@@ -4,6 +4,7 @@ Resource  ../Tests_Imports.robot
 Test Setup  Begin Web Test
 Test Teardown  End Web Test
 
+
 *** Variables ***
 
 
@@ -17,7 +18,10 @@ Failed Login Attempts
 
 *** Keywords ***
 Sign In With Invalid Credentials Should Fail
-    [Arguments]  ${CASE}  ${USER_EMAIL}  ${USER_PASSWORD}
+    [Arguments]  ${CASE}
+    ...          ${USER_EMAIL}
+    ...          ${USER_PASSWORD}
     TopNav.Go to Login Page
     LoginPage.Populate Login Form And Sumbit  ${USER_EMAIL}  ${USER_PASSWORD}
-    LoginPage.Verify Login Error Displayed
+    LoginPage.Verify Login Error Displayed  Invalid Email or password.
+    LoginPage.Verify Login Form Displayed

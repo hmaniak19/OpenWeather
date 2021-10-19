@@ -33,7 +33,6 @@ Verify User Menu Includes Username
     ${username} =  get text  ${USER_MENU_LOCATOR}
     Should Be Equalas Strings  ${username}  ${expected_username}
 
-
 Go To User Profile
     Wait Until Page Contains Element  ${USER_MENU_LOCATOR}
     Click Element  ${USER_MENU_LOCATOR}
