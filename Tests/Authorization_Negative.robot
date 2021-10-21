@@ -6,6 +6,7 @@ Test Teardown  End Web Test
 
 
 *** Variables ***
+${LOGIN_ERROR_TEXT} =  Invalid Email or password.
 
 
 *** Test Cases ***
@@ -21,7 +22,7 @@ Sign In With Invalid Credentials Should Fail
     [Arguments]  ${CASE}
     ...          ${USER_EMAIL}
     ...          ${USER_PASSWORD}
-    TopNav.Go to Login Page
-    LoginPage.Populate Login Form And Sumbit  ${USER_EMAIL}  ${USER_PASSWORD}
-    LoginPage.Verify Login Error Displayed  Invalid Email or password.
+    TopNav.Navigate to Login Page
+    LoginPage.Populate Login Form And Submit  ${USER_EMAIL}  ${USER_PASSWORD}
+    LoginPage.Verify Login Error Displayed  ${LOGIN_ERROR_TEXT}
     LoginPage.Verify Login Form Displayed

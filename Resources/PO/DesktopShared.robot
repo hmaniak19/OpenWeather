@@ -15,8 +15,8 @@ Navigate To
     Wait Until Page Does Not Contain Element    ${LOGIN_LOADER_LOCATOR}  timeout=10 seconds
 
 Sign in
-    TopNav.Go to Login Page
-    LoginPage.Populate Login Form And Sumbit  ${VALID_USER_EMAIL}
+    TopNav.Navigate to Login Page
+    LoginPage.Populate Login Form And Submit  ${VALID_USER_EMAIL}
     ...                                       ${VALID_USER_PASSWORD}
     HomePage.Verify Home Page loaded
 

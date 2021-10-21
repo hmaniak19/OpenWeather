@@ -11,11 +11,12 @@ Test Teardown  End Web Test
 *** Test Cases ***
 User Changes Username
     [Setup]  Run Keywords  Begin Web Test
-    ...      AND           TopNav.Go to Login Page
+    ...      AND           TopNav.Navigate to Login Page
     ...      AND           DesktopShared.Sign in
-    ...      AND           TopNav.Go To User Profile
+    ...      AND           TopNav.Navigate To User Profile
     BuiltIn.Log  Step 1: I enter new username
-    UserSettings.Input New Username And Save
+    ${NEW_USERNAME} =  String.Generate Random String
+    UserSettings.Input New Username And Save  ${NEW_USERNAME}
     TopNav.Navigate To Main Page
     TopNav.Verify User Menu Includes Username  ${NEW_USERNAME}
 

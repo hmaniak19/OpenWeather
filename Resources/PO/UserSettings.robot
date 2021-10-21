@@ -7,15 +7,14 @@ Library  String
 ${USERNAME_LOCATOR} =  //input[@id="profile_form_username"]
 ${USER_SETTINGS_SAVE_LOCATOR} =  //input[@value="Save"]
 ${USER_PROFILE_SUCCESS_ALERT} =  //div[@class="panel-body"]
+${PROFILE_UPDATED_SUCCESS_TEXT} =  Profile was updated successfully
 
 
 *** Keywords ***
 Input New Username And Save
+    [Arguments]  ${new_username}
     Wait Until Page Contains Element  ${USERNAME_LOCATOR}
-    ${random_string} =  String.Generate Random String
-    Set Global Variable  ${NEW_USERNAME}  ${random_string}
-    Input Text  ${USERNAME_LOCATOR}  ${NEW_USERNAME}
+    Input Text  ${USERNAME_LOCATOR}  ${new_username}
     CLick Element  ${USER_SETTINGS_SAVE_LOCATOR}
     Wait Until Page Contains Element  ${USER_PROFILE_SUCCESS_ALERT}
-    ${success_text} =  get text  ${USER_PROFILE_SUCCESS_ALERT}
-    Should Be Equalas Strings  ${success_text}  Profile was updated successfully  ignore_case=true
+    Element Should Contain    ${USER_PROFILE_SUCCESS_ALERT}    ${PROFILE_UPDATED_SUCCESS_TEXT}  ignore_case=true

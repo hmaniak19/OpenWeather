@@ -6,27 +6,28 @@ Test Teardown  End Web Test
 
 
 *** Variables ***
+${LOGIN_ERROR_TEXT} =  Invalid Email or password.
 
 
 *** Test Cases ***
 Succussfull Login
     [Setup]  Run Keywords  Begin Web Test
-    ...      AND           TopNav.Go to Login Page
+    ...      AND           TopNav.Navigate to Login Page
     BuiltIn.Log    Step 1: I populate login form and click Sign in
-    LoginPage.Populate Login Form And Sumbit  ${VALID_USER_EMAIL}
+    LoginPage.Populate Login Form And Submit  ${VALID_USER_EMAIL}
     ...                                       ${VALID_USER_PASSWORD}
-    HomePage.Verify Home Page loaded
+    HomePage.Verify Home Page Loaded
     HomePage.Verify User Navigation Tabs Displayed
     TopNav.Verify User Menu Exists
 
 User Successfull Login After Failed Attempt
     [Setup]  Run Keywords  Begin Web Test
-    ...      AND           TopNav.Go to Login Page
+    ...      AND           TopNav.Navigate to Login Page
     BuiltIn.Log    Step 1: I enter valid email and invalid password and click Sign in
-    LoginPage.Populate Login Form And Sumbit  ${VALID_USER_EMAIL}  invalid password
-    LoginPage.Verify Login Error Displayed
+    LoginPage.Populate Login Form And Submit  ${VALID_USER_EMAIL}  invalid password
+    LoginPage.Verify Login Error Displayed  ${LOGIN_ERROR_TEXT}
     BuiltIn.Log    Step 2: I enter valid email and password and click Sign in
-    LoginPage.Populate Login Form And Sumbit  ${VALID_USER_EMAIL}  ${VALID_USER_PASSWORD}
+    LoginPage.Populate Login Form And Submit  ${VALID_USER_EMAIL}  ${VALID_USER_PASSWORD}
     HomePage.Verify Home Page loaded
     HomePage.Verify User Navigation Tabs Displayed
     TopNav.Verify User Menu Exists

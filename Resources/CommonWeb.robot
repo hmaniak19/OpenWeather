@@ -8,7 +8,7 @@ Resource  ../Tests_Imports.robot
 
 *** Keywords ***
 Begin Web Test
-    open browser  about:blank   ${BROWSER}
+    Open Browser  about:blank   ${BROWSER}
     DesktopShared.Navigate To  ${START_URL}
     TopNav.Verify Logo Loaded
 
