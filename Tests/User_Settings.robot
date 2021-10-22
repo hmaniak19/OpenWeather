@@ -16,8 +16,8 @@ User Changes Username
     ...      AND           TopNav.Navigate To User Profile
     BuiltIn.Log  Step 1: I enter new username
     ${NEW_USERNAME} =  String.Generate Random String
-    UserSettings.Input New Username And Save  ${NEW_USERNAME}
+    UserSettings.Input New Username And Save  new_username=${NEW_USERNAME}
     TopNav.Navigate To Main Page
-    TopNav.Verify User Menu Includes Username  ${NEW_USERNAME}
+    TopNav.Verify User Menu Includes Username  expected_username=${NEW_USERNAME}
 
 
