@@ -17,7 +17,6 @@ Succussfull Login
     LoginPage.Populate Login Form And Submit  username=${VALID_USER_EMAIL}
     ...                                       password=${VALID_USER_PASSWORD}
     HomePage.Verify Home Page Loaded
-    HomePage.Verify User Navigation Tabs Displayed
     TopNav.Verify User Menu Exists
 
 User Successfull Login After Failed Attempt
@@ -31,7 +30,6 @@ User Successfull Login After Failed Attempt
     LoginPage.Populate Login Form And Submit  username=${VALID_USER_EMAIL}
     ...                                       password=${VALID_USER_PASSWORD}
     HomePage.Verify Home Page loaded
-    HomePage.Verify User Navigation Tabs Displayed
     TopNav.Verify User Menu Exists
 
 
