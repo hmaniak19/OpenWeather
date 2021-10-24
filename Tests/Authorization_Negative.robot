@@ -6,7 +6,6 @@ Test Teardown  End Web Test
 
 
 *** Variables ***
-${LOGIN_ERROR_TEXT} =  Invalid Email or password.
 
 
 *** Test Cases ***
@@ -19,11 +18,12 @@ Failed Login Attempts
 
 *** Keywords ***
 Sign In With Invalid Credentials Should Fail
+    [Documentation]  It is a Template to check failed login test with invalid username/password
     [Arguments]  ${case}
     ...          ${user_email}
     ...          ${user_password}
     TopNav.Navigate to Login Page
-    LoginPage.Populate Login Form And Submit  username=${user_email}
-    ...                                       password=${user_password}
-    LoginPage.Verify Login Error Displayed  login_error_text=${LOGIN_ERROR_TEXT}
-    LoginPage.Verify Login Form Displayed
+    LoginSteps.Populate Login Form And Submit  user_email=${user_email}
+    ...                                        user_password=${user_password}
+    LoginPage.Check Login Error Displayed
+    LoginPage.Check Login Form Displayed

@@ -3,31 +3,37 @@ Library  SeleniumLibrary
 
 
 *** Variables ***
-${LOGIN_USERNAME_LOCATOR} =  //input[@id="user_email"]
+${LOGIN_EMAIL_LOCATOR} =  //input[@id="user_email"]
 ${LOGIN PASSWORD_LOCATOR} =  //input[@id="user_password"]
 ${LOGIN_SUBMIT_LOCATOR} =  //input[@value="Submit"]
 ${LOGIN_ERROR_TEXT_LOCATOR} =  //div[@class="panel-body"]
+${LOGIN_ERROR_TEXT} =  Invalid Email or password.
 
 
 *** Keywords ***
-Populate Login Form And Submit
-    [Arguments]    ${username}
-    ...            ${password}
-    Verify Login Form Displayed
-    Input Text  ${LOGIN_USERNAME_LOCATOR}  ${username}
-    Input Password  ${LOGIN PASSWORD_LOCATOR}  ${password}
+Fill In User Email Field
+    [Documentation]  Fill in email field on Login form
+    [Arguments]  ${user_email}
+    Wait Until Page Contains Element  ${LOGIN_EMAIL_LOCATOR}
+    Input Text  ${LOGIN_EMAIL_LOCATOR}  ${user_email}
+
+Fill In User Password Field
+    [Documentation]  Fill in password field on Login form
+    [Arguments]  ${user_password}
+    Wait Until Page Contains Element  ${LOGIN PASSWORD_LOCATOR}
+    Input Password  ${LOGIN PASSWORD_LOCATOR}  ${user_password}
+
+Click Login Submit
+    [Documentation]  Click on Submit button on Login form
+    Wait Until Page Contains Element  ${LOGIN_SUBMIT_LOCATOR}
     CLick Element  ${LOGIN_SUBMIT_LOCATOR}
 
-Verify Login Form Displayed
-    Wait Until Page Contains Element  ${LOGIN_USERNAME_LOCATOR}
-
-Verify Login Error Displayed
-    [Arguments]  ${login_error_text}
+Check Login Error Displayed
+    [Documentation]  Check that Login error displayed on Login form after failed login
     Wait Until Page Contains Element  ${LOGIN_ERROR_TEXT_LOCATOR}  timeout=10 seconds
-    Element Should Contain  ${LOGIN_ERROR_TEXT_LOCATOR}  ${login_error_text}
+    Element Should Contain  ${LOGIN_ERROR_TEXT_LOCATOR}  ${LOGIN_ERROR_TEXT}
 
-
-
-
-
+Check Login Form Displayed
+    [Documentation]  Check user's email locator on Login form
+    Wait Until Page Contains Element  ${LOGIN_EMAIL_LOCATOR}
 
