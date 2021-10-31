@@ -1,5 +1,5 @@
 *** Settings ***
-Resource  ../../Tests_Imports.robot
+Resource  ../Tests_Imports.robot
 
 
 *** Keywords ***
