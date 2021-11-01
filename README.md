@@ -13,7 +13,7 @@ using **Robot Framework**.
     - Tests Imports
     
 - Results
-    
+![OpenWeather Project](https://user-images.githubusercontent.com/85609637/139724806-ac91e2a3-5937-4c53-a0a8-84c14280251a.png)  
 
 ### Requirements
 
