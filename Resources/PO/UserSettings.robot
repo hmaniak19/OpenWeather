@@ -1,6 +1,5 @@
 *** Settings ***
-Library  SeleniumLibrary
-Library  String
+Resource  ../Tests_Imports.robot
 
 
 *** Variables ***

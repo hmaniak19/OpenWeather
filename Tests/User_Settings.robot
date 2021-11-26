@@ -1,5 +1,5 @@
 *** Settings ***
-Resource  ../Tests_Imports.robot
+Resource  ../Resources/Tests_Imports.robot
 
 Test Setup  Begin Web Test
 Test Teardown  End Web Test
