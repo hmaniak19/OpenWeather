@@ -1,65 +1,43 @@
 *** Settings ***
 Resource  ../Tests_Imports.robot
-
 Library    Collections
 
 *** Variables ***
 
 
 *** Keywords ***
-Get Response From GET Weather request
-    [Documentation]  Send GET /weather request And Get Its Response
-    [Arguments]  ${params}
-    ${response} =    GET  ${API_URL}/weather  params=${params}
-    Status Should Be    OK    ${response}
-    [Return]  ${response}
-
-Get Weather Of The City By Name
+Get City Temperature By Name
+    [Documentation]  Get city temprerature by name from GET /Weather request
     [Arguments]  ${city}
     ...          ${units}=${EMPTY}
-    IF  "${units}" == "${EMPTY}"
-        ${params} =    Create Dictionary    q=${city}
-        ...                                 appid=${API_KEY}
-    ELSE
-        ${params} =    Create Dictionary    q=${city}
-        ...                                 appid=${API_KEY}
-        ...                                 units=${units}
-    END
-    ${response} =    Get Response From GET Weather request  params=${params}
-    ${city_weather} =  Convert To Dictionary  ${response.json()}[main]
-    [Return]  ${city_weather}
+    ${response} =  Endpoints.Get Weather By Name  city=${city}
+    ...                                           units=${units}
+    [Return]  ${response}[main][temp]
 
-Get Temperature Of The City By Name
+Get City Longitude And Latitude By Name
+    [Documentation]  Get city longitude and latitude by name from GET /Weather request
     [Arguments]  ${city}
-    ...          ${units}=${EMPTY}
-    ${city_weather} =  Get Weather Of The City By Name  city=${city}
-    ...                                                 units=${units}
-    [Return]  ${city_weather}[temp]
-
-Get Longitude And Latitude From Get Weather Request With Name Param
-    [Arguments]  ${city}
-    ${params} =    Create Dictionary    q=${city}   appid=${API_KEY}
-    ${response} =    Get Response From GET Weather request  params=${params}
-    ${city_lon} =  Set Variable  ${response.json()}[coord][lon]
-    ${city_lat} =  Set Variable  ${response.json()}[coord][lat]
+    ${response} =    Endpoints.Get Weather By Name  city=${city}
+    ${city_lon} =  Set Variable  ${response}[coord][lon]
+    ${city_lat} =  Set Variable  ${response}[coord][lat]
     [Return]  ${city_lon}  ${city_lat}
 
-Get City Name From Get Weather Request With Coord Param
+Get City Name By Coords
+    [Documentation]  Get city name by coordinates from GET /Weather request
     [Arguments]  ${lon}
     ...          ${lat}
-    ${params} =    Create Dictionary    lat=${lat}  lon=${lon}   appid=${API_KEY}
-    ${response} =    Get Response From GET Weather request  params=${params}
-    ${city_name} =  Set Variable  ${response.json()}[name]
-    [Return]  ${city_name}
+    ${response} =    Get Weather By Coords  lat=${lat}
+    ...                                     lon=${lon}
+    [Return]  ${response}[name]
 
-Get City Name From Get Weather Request With ID Param
+Get City Name By ID
+    [Documentation]  Get city name by ID from GET /Weather request
     [Arguments]  ${id}
-    ${params} =    Create Dictionary    id=${id}   appid=${API_KEY}
-    ${response} =    Get Response From GET Weather request  params=${params}
-    ${city_name} =  Set Variable  ${response.json()}[name]
-    [Return]  ${city_name}
+    ${response} =  Get Weather By ID  id=${id}
+    [Return]  ${response}[name]
 
 Check Received Longitude And Latitude Equal To Expected
+    [Documentation]  Check that received Longitude And Latitude are equal to expected
     [Arguments]  ${received_lon}
     ...          ${received_lat}
     ...          ${expected_lon}
@@ -68,11 +46,13 @@ Check Received Longitude And Latitude Equal To Expected
     Should Be Equal As Numbers  ${received_lat}  ${expected_lat}
 
 Check Received City Name Equal To Expected
+    [Documentation]  Check that received city name is equal to expected
     [Arguments]  ${received_name}
     ...          ${expected_name}
     Should Be Equal As Strings    ${received_name}    ${expected_name}
 
 Check Units Are In Correct Range
+    [Documentation]  Check temperature is in logic range
     [Arguments]  ${temp}
     ...          ${units}
     IF  "${units}"=="${METRIC_UNITS}"
@@ -82,6 +62,13 @@ Check Units Are In Correct Range
     ELSE
         Should Be True    283.15<${temp}<322.15
     END
+
+Check Temperature by API and in WEB Equal
+    [Documentation]  Check that temperature found by API and by WEB is equal
+    [Arguments]  ${city_temp_by_api}
+    ...          ${city_temp_by_web}
+    ${city_temp_by_api_rounded} =  Convert To Number    ${city_temp_by_api}  0
+    Should Be Equal As Numbers    ${city_temp_by_api_rounded}    ${city_temp_by_web}
 
 
 
