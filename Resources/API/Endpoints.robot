@@ -2,7 +2,7 @@
 Resource  ../Tests_Imports.robot
 
 *** Keywords ***
-Send /Get Weather Request
+Send Get Weather Request
     [Documentation]  Send GET /weather request And Get Its Response
     [Arguments]  ${params}
     ${response} =    GET  ${API_URL}/weather  params=${params}
@@ -21,7 +21,7 @@ Get Weather By Name
         ...                                 appid=${API_KEY}
         ...                                 units=${units}
     END
-    ${response} =    Send /Get Weather Request  params=${params}
+    ${response} =    Send Get Weather Request  params=${params}
     [Return]  ${response.json()}
 
 

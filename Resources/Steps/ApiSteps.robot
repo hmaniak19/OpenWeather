@@ -26,14 +26,14 @@ Get City Name By Coords
     [Documentation]  Get city name by coordinates from GET /Weather request
     [Arguments]  ${lon}
     ...          ${lat}
-    ${response} =    Get Weather By Coords  lat=${lat}
+    ${response} =    Endpoints.Get Weather By Coords  lat=${lat}
     ...                                     lon=${lon}
     [Return]  ${response}[name]
 
 Get City Name By ID
     [Documentation]  Get city name by ID from GET /Weather request
     [Arguments]  ${id}
-    ${response} =  Get Weather By ID  id=${id}
+    ${response} =  Endpoints.Get Weather By ID  id=${id}
     [Return]  ${response}[name]
 
 Check Received Longitude And Latitude Equal To Expected
@@ -64,7 +64,7 @@ Check Units Are In Correct Range
     END
 
 Check Temperature by API and in WEB Equal
-    [Documentation]  Check that temperature found by API and by WEB is equal
+    [Documentation]  Check that temperature found by API and by WEB are equal
     [Arguments]  ${city_temp_by_api}
     ...          ${city_temp_by_web}
     ${city_temp_by_api_rounded} =  Convert To Number    ${city_temp_by_api}  0
