@@ -23,7 +23,7 @@ User Successfull Login After Failed Attempt
     ...      AND           TopNav.Navigate to Login Page
     BuiltIn.Log    Step 1: I enter valid email and invalid password and click Sign in
     LoginSteps.Populate Login Form And Submit  user_email=${VALID_USER_EMAIL}
-    ...                                        user_password=invalid password
+    ...                                        user_password=${INVALID_USER_PASSWORD}
     LoginPage.Check Login Error Displayed
     BuiltIn.Log    Step 2: I enter valid password and click Sign in
     LoginPage.Fill In User Password Field  user_password=${VALID_USER_PASSWORD}

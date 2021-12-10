@@ -11,8 +11,8 @@ Test Teardown  End Web Test
 *** Test Cases ***
 Failed Login Attempts
     [Template]  Sign In With Invalid Credentials Should Fail
-    case=User enters invalid email and valid password  user_email=invalid email  user_password=${VALID_USER_PASSWORD}
-    case=User enters valid email and invalid password  user_email=${VALID_USER_EMAIL}  user_password=invalid password
+    case=User enters invalid email and valid password  user_email=${INVALID_USER_EMAIL}  user_password=${VALID_USER_PASSWORD}
+    case=User enters valid email and invalid password  user_email=${VALID_USER_EMAIL}  user_password=${INVALID_USER_PASSWORD}
     case=User didn't enter anything on login page  user_email=${EMPTY}  user_password=${EMPTY}
 
 
