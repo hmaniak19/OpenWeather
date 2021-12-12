@@ -19,24 +19,12 @@ Get Temperature By API And In Web And Verify They Are Equal
     MainPageSteps.Search For The City  city_name=${CITY_NAME}
     ...                                country=${COUNTRY}
     ...                                city_id=${CITY_ID}
-    Check Temperature in Web using API data  city_name=${CITY_NAME}
+    MixedSteps.Check Temperature in Web using API data  city_name=${CITY_NAME}
     ...                                      units=${METRIC_UNITS}
     BuiltIn.Log  Step 2: I click Imperial(Fahrenheit) and get city temperature in WEB and check it is the same as from API
     MainPage.Click Imperial
-    Check Temperature in Web using API data  city_name=${CITY_NAME}
+    MixedSteps.Check Temperature in Web using API data  city_name=${CITY_NAME}
     ...                                      units=${IMPERIAL_UNITS}
-
-
-*** Keywords ***
-Check Temperature In Web Using API Data
-    [Documentation]  Get temperature by API, Get temperature in WEB and check they are equal
-    [Arguments]  ${city_name}
-    ...          ${units}
-    ${city_temp_by_web_search} =  MainPageSteps.Get Current City Temperature
-    ${city_temp_by_api} =  ApiSteps.Get City Temperature By Name  city=${city_name}
-    ...                                                           units=${units}
-    ${city_temp_by_api_rounded} =  Convert To Number    ${city_temp_by_api}  0
-    Should Be Equal As Numbers    ${city_temp_by_api_rounded}    ${city_temp_by_web_search}
 
 
 
