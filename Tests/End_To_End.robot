@@ -22,7 +22,7 @@ Get Temperature By API And In Web And Verify They Are Equal
     MixedSteps.Check Temperature in Web using API data  city_name=${CITY_NAME}
     ...                                      units=${METRIC_UNITS}
     BuiltIn.Log  Step 2: I click Imperial(Fahrenheit) and get city temperature in WEB and check it is the same as from API
-    MainPage.Click Imperial
+    MainPageSteps.Change Units To Imperial
     MixedSteps.Check Temperature in Web using API data  city_name=${CITY_NAME}
     ...                                      units=${IMPERIAL_UNITS}
 

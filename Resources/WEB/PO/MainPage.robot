@@ -17,12 +17,6 @@ Navigate To Base URL
     [Documentation]  Navigate to base URL
     Go To    ${BASE_URL}
 
-Verify Main Page Loaded
-    [Documentation]  Verify that url is correct and loader disappears
-    Wait Until Location Is  ${BASE_URL}
-    Wait Until Page Contains Element    ${START_LOADER_LOCATOR}
-    Wait Until Page Does Not Contain Element    ${START_LOADER_LOCATOR}  timeout=10 seconds
-
 Type City Name In The Search
     [Documentation]  Enter City Name In The Search Block
     [Arguments]  ${city_name}
@@ -30,7 +24,7 @@ Type City Name In The Search
     Input Text    ${SEARCH__BLOCK_LOCATOR}    ${city_name}
 
 Get Current City Temperature
-    [Documentation]  Get The Temperature Of The City On The Main Page
+    [Documentation]  Get The Temperature Of The City On The Main Page with degrees and units
     Wait Until Element Is Visible    ${CURRENT_CITY_TEMP_LOCATOR}
     ${current_city_temperature} =  Get Text    ${CURRENT_CITY_TEMP_LOCATOR}
     [Return]  ${current_city_temperature}
@@ -51,4 +45,4 @@ Click Imperial
     [Documentation]  Click On Imerial Option On Home Page
     Wait Until Element Is Visible    ${IMPERIAL_LOCATOR}
     Click Element    ${IMPERIAL_LOCATOR}
-    Wait Until Page Does Not Contain Element    ${START_LOADER_LOCATOR}  timeout=10 seconds
+
