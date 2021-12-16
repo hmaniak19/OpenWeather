@@ -36,6 +36,34 @@ Get City Name By ID
     ${response} =  Endpoints.Get Weather By ID  id=${id}
     [Return]  ${response}[name]
 
+Get 8 Days Forecast For A City By API
+    [Documentation]  Get list with 8 dictionaries (with 8-day forecast)  where one dictionary=one day weather.
+    ...              Format: {'date': 'Thu, Dec 16', 'temp_max': 10, 'temp_min': 6, 'weather': 'broken clouds'}
+    [Arguments]  ${lon}
+    ...          ${lat}
+    ${api_all_weather_forecast} =  Endpoints.Get 8 Days Forecast For A City  lon=${lon}  lat=${lat}
+    @{api_all_weather_forecast} =  Collections.Convert To List  ${api_all_weather_forecast}
+    @{api_forecast} =  Create List
+    FOR  ${day}  IN  @{api_all_weather_forecast}
+        ${date_value} =  Get From Dictionary  ${day}   dt
+        ${correct_date} =  Convert Date    ${date_value}   result_format=%a, %b %d
+
+        ${all_temp} =  Get From Dictionary  ${day}   temp
+        ${temp_max} =  Get From Dictionary  ${all_temp}  max
+        ${temp_max_celcius} =  Convert To Number    ${temp_max-273.15}  0
+        ${temp_max_celcius} =  Convert To Integer    ${temp_max_celcius}
+        ${temp_min} =  Get From Dictionary  ${all_temp}  min
+        ${temp_min_celcius} =  Convert To Number    ${temp_min-273.15}  0
+        ${temp_min_celcius} =  Convert To Integer  ${temp_min_celcius}
+
+        ${all_weather} =  Get From Dictionary  ${day}   weather
+        ${all_weather} =  Get From List  ${all_weather}  0
+        ${weather_descr} =  Get From Dictionary  ${all_weather}   description
+        &{api_day_dict} =  Create Dictionary  date=${correct_date}  temp_max=${temp_max_celcius}  temp_min=${temp_min_celcius}  weather=${weather_descr}
+        Append To List  ${api_forecast}  ${api_day_dict}
+    END
+    [Return]  @{api_forecast}
+
 Check Received Longitude And Latitude Equal To Expected
     [Documentation]  Check that received Longitude And Latitude are equal to expected
     [Arguments]  ${received_lon}
@@ -69,6 +97,8 @@ Check Temperature by API and in WEB Equal
     ...          ${city_temp_by_web}
     ${city_temp_by_api_rounded} =  Convert To Number    ${city_temp_by_api}  0
     Should Be Equal As Numbers    ${city_temp_by_api_rounded}    ${city_temp_by_web}
+
+
 
 
 
