@@ -1,6 +1,5 @@
 *** Settings ***
 Resource  ../Tests_Imports.robot
-Library    Collections
 
 *** Variables ***
 
@@ -27,7 +26,7 @@ Get City Name By Coords
     [Arguments]  ${lon}
     ...          ${lat}
     ${response} =    Endpoints.Get Weather By Coords  lat=${lat}
-    ...                                     lon=${lon}
+    ...                                               lon=${lon}
     [Return]  ${response}[name]
 
 Get City Name By ID
@@ -35,6 +34,35 @@ Get City Name By ID
     [Arguments]  ${id}
     ${response} =  Endpoints.Get Weather By ID  id=${id}
     [Return]  ${response}[name]
+
+Get Date From Day Weather JSON
+    [Documentation]  Get Date in format 'Thu, Dec 16'
+    [Arguments]  ${day_weather_json}
+    ${date_value} =  Get Value From Json  ${day_weather_json}   dt
+    ${date} =  DateTime.Convert Date    ${date_value[0]}   result_format=%a, %b %d
+    [Return]  ${date}
+
+Get Max Temperature In Celsius From Day Weather JSON
+    [Documentation]  Get Max Temperature in format '25'
+    [Arguments]  ${day_weather_json}
+    ${temp_max} =  Get Value From Json  ${day_weather_json}  temp.max
+    ${temp_max_celcius} =  Convert To Number    ${temp_max[0]-273.15}  0
+    ${temp_max_celcius} =  Convert To Integer    ${temp_max_celcius}
+    [Return]  ${temp_max_celcius}
+
+Get Min Temperature In Celsius From Day Weather JSON
+    [Documentation]  Get Min Temperature in format '8'
+    [Arguments]  ${day_weather_json}
+    ${temp_min} =  Get Value From Json  ${day_weather_json}  temp.min
+    ${temp_min_celcius} =  Convert To Number    ${temp_min[0]-273.15}  0
+    ${temp_min_celcius} =  Convert To Integer    ${temp_min_celcius}
+    [Return]  ${temp_min_celcius}
+
+Get Weather Description From Day Weather JSON
+    [Documentation]  Get Weather Description in format 'broken clouds'
+    [Arguments]  ${day_weather_json}
+    ${weather_descr} =  Get Value From Json  ${day_weather_json}  $.weather[0].description
+    [Return]  ${weather_descr}[0]
 
 Get 8 Days Forecast For A City By API
     [Documentation]  Get list with 8 dictionaries (with 8-day forecast)  where one dictionary=one day weather.
@@ -45,24 +73,40 @@ Get 8 Days Forecast For A City By API
     @{api_all_weather_forecast} =  Collections.Convert To List  ${api_all_weather_forecast}
     @{api_forecast} =  Create List
     FOR  ${day}  IN  @{api_all_weather_forecast}
-        ${date_value} =  Get From Dictionary  ${day}   dt
-        ${correct_date} =  Convert Date    ${date_value}   result_format=%a, %b %d
+        ${date} =  Get Date From Day Weather JSON  day_weather_json=${day}
+        ${temp_max_celcius} =  Get Max Temperature In Celsius From Day Weather JSON  day_weather_json=${day}
+        ${temp_min_celcius} =  Get Min Temperature In Celsius From Day Weather JSON  day_weather_json=${day}
+        ${weather_descr} =  Get Weather Description From Day Weather JSON  day_weather_json=${day}
 
-        ${all_temp} =  Get From Dictionary  ${day}   temp
-        ${temp_max} =  Get From Dictionary  ${all_temp}  max
-        ${temp_max_celcius} =  Convert To Number    ${temp_max-273.15}  0
-        ${temp_max_celcius} =  Convert To Integer    ${temp_max_celcius}
-        ${temp_min} =  Get From Dictionary  ${all_temp}  min
-        ${temp_min_celcius} =  Convert To Number    ${temp_min-273.15}  0
-        ${temp_min_celcius} =  Convert To Integer  ${temp_min_celcius}
-
-        ${all_weather} =  Get From Dictionary  ${day}   weather
-        ${all_weather} =  Get From List  ${all_weather}  0
-        ${weather_descr} =  Get From Dictionary  ${all_weather}   description
-        &{api_day_dict} =  Create Dictionary  date=${correct_date}  temp_max=${temp_max_celcius}  temp_min=${temp_min_celcius}  weather=${weather_descr}
+        &{api_day_dict} =  Create Dictionary  date=${date}  temp_max=${temp_max_celcius}  temp_min=${temp_min_celcius}  weather=${weather_descr}
         Append To List  ${api_forecast}  ${api_day_dict}
     END
     [Return]  @{api_forecast}
+
+Get 5 Days Sunrise and Sunset Forecast For A City By API
+    [Documentation]  Get list with 5 dictionaries (5-day forecast)  where one dictionary=one day info.
+    ...              Format: {'date': 'Thu, Dec 16', 'sunrise': '08:02am', 'sunset': '03:51pm'}
+    [Arguments]  ${lon}
+    ...          ${lat}
+    ${api_all_weather_forecast} =  Endpoints.Get 8 Days Forecast For A City  lon=${lon}  lat=${lat}
+    @{api_all_weather_forecast} =  Collections.Convert To List  ${api_all_weather_forecast}
+    @{api_forecast} =  Create List
+    FOR  ${index}  IN RANGE  5
+        ${day} =  Get From List    ${api_all_weather_forecast}    ${index}
+
+        ${date} =  Get Date From Day Weather JSON  day_weather_json=${day}
+
+        ${sunrise_timestamp} =  Get From Dictionary  ${day}   sunrise
+        ${sunrise} =  ConvertTools.Convert Timestamp To Time  ${sunrise_timestamp}
+
+        ${sunset_timestamp} =  Get From Dictionary  ${day}   sunset
+        ${sunset} =  ConvertTools.Convert Timestamp To Time  ${sunset_timestamp}
+
+        &{api_day_dict} =  Create Dictionary  date=${date}  sunrise=${sunrise}  sunset=${sunset}
+        Append To List  ${api_forecast}  ${api_day_dict}
+    END
+    [Return]  @{api_forecast}
+
 
 Check Received Longitude And Latitude Equal To Expected
     [Documentation]  Check that received Longitude And Latitude are equal to expected

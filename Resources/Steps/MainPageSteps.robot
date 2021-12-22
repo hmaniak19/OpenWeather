@@ -64,6 +64,21 @@ Get Temp Max And Temp Min Of A Day
     ${temp_min} =  Convert To Integer    ${temp_min}
     [Return]  ${temp_max}  ${temp_min}
 
+Get Sunrise And Sunset For Selected Day
+    [Documentation]  Click on Details of current day and get sunrise and sunset time
+    ...              Format: {'date': 'Thu, Dec 16', 'sunrise': '08:02am', 'sunset': '03:51pm'}
+    ${selected_date} =  MainPage.Get Selected Date From Day Detailed View In 8-day Forecast
+    ${sunrise_time} =  MainPage.Get Sunrise Time
+    ${sunset_time} =  MainPage.Get Sunset Time
+    &{web_day_dict} =  Create Dictionary  date=${selected_date}  sunrise=${sunrise_time}  sunset=${sunset_time}
+    [Return]  &{web_day_dict}
+
+Get Sunrise And Sunset For The Next Day
+    [Arguments]  ${current_day}
+
+Get Sunrise And Sunset For The Previous Day
+    [Arguments]  ${current_day}
+
 Change Units To Imperial
     [Documentation]  Click on Imperial and check that loader disappears
     MainPage.Click Imperial
@@ -76,7 +91,7 @@ Verify Main Page Loaded
 
 Check Loader Disappears
     [Documentation]  Check that loader appears and disappears when all info is loaded on the page
-    Wait Until Page Contains Element    ${START_LOADER_LOCATOR}
+#    Wait Until Page Contains Element    ${START_LOADER_LOCATOR}
     Wait Until Page Does Not Contain Element    ${START_LOADER_LOCATOR}  timeout=10 seconds
 
 Verify Correct City Displayed

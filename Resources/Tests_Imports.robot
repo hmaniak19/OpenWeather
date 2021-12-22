@@ -12,6 +12,7 @@ Resource  ./Steps/MainPageSteps.robot
 Resource  ./Steps/MixedSteps.robot
 Resource  ./Steps/UserSettingsSteps.robot
 Resource  ./Global_Variables.robot
+Library  ./ConvertTools.py
 Library  SeleniumLibrary
 Library  String
 Library  RequestsLibrary

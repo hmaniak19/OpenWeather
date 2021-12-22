@@ -2,3 +2,4 @@
 /Results
 .idea/
 .DS_Store/
+Resources/__pycache__/
