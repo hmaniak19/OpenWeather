@@ -1,8 +1,19 @@
 *** Settings ***
-Resource  ../Tests_Imports.robot
+Resource  ./Tests_Imports.robot
 
 
 *** Keywords ***
+Begin Web Test
+    [Documentation]  Open browser, navigate to Base URL
+    Open Browser  about:blank   ${BROWSER}
+    MainPage.Navigate To Base URL
+    MainPageSteps.Verify Main Page Loaded
+    TopNav.Verify Logo Loaded
+
+End Web Test
+    [Documentation]  Closes all browsers
+    Close All Browsers
+
 Check Temperature In Web Using API Data
     [Documentation]  Get temperature by API, Get temperature in WEB and check they are equal
     [Arguments]  ${city_name}

@@ -1,22 +1,20 @@
 *** Settings ***
 Resource  ../Tests_Imports.robot
 
-*** Variables ***
-
 
 *** Keywords ***
 Get City Temperature By Name
     [Documentation]  Get city temprerature by name from GET /Weather request
     [Arguments]  ${city}
     ...          ${units}=${EMPTY}
-    ${response} =  Weather.Get Weather By Name  city=${city}
+    ${response} =  WeatherEndpoint.Get Weather By Name  city=${city}
     ...                                           units=${units}
     [Return]  ${response}[main][temp]
 
 Get City Longitude And Latitude By Name
     [Documentation]  Get city longitude and latitude by name from GET /Weather request
     [Arguments]  ${city}
-    ${response} =    Weather.Get Weather By Name  city=${city}
+    ${response} =    WeatherEndpoint.Get Weather By Name  city=${city}
     ${city_lon} =  Set Variable  ${response}[coord][lon]
     ${city_lat} =  Set Variable  ${response}[coord][lat]
     [Return]  ${city_lon}  ${city_lat}
@@ -25,14 +23,14 @@ Get City Name By Coords
     [Documentation]  Get city name by coordinates from GET /Weather request
     [Arguments]  ${lon}
     ...          ${lat}
-    ${response} =    Weather.Get Weather By Coords  lat=${lat}
+    ${response} =    WeatherEndpoint.Get Weather By Coords  lat=${lat}
     ...                                               lon=${lon}
     [Return]  ${response}[name]
 
 Get City Name By ID
     [Documentation]  Get city name by ID from GET /Weather request
     [Arguments]  ${id}
-    ${response} =  Weather.Get Weather By ID  id=${id}
+    ${response} =  WeatherEndpoint.Get Weather By ID  id=${id}
     [Return]  ${response}[name]
 
 Get Date From Day Weather JSON
@@ -69,7 +67,7 @@ Get 8 Days Forecast For A City By API
     ...              Format: {'date': 'Thu, Dec 16', 'temp_max': 10, 'temp_min': 6, 'weather': 'broken clouds'}
     [Arguments]  ${lon}
     ...          ${lat}
-    ${api_all_weather_forecast} =  Onecall.Get 8 Days Forecast For A City  lon=${lon}  lat=${lat}
+    ${api_all_weather_forecast} =  OnecallEndpoint.Get 8 Days Forecast For A City  lon=${lon}  lat=${lat}
     @{api_all_weather_forecast} =  Collections.Convert To List  ${api_all_weather_forecast}
     @{api_forecast} =  Create List
     FOR  ${day}  IN  @{api_all_weather_forecast}
@@ -88,7 +86,7 @@ Get 5 Days Sunrise and Sunset Forecast For A City By API
     ...              Format: {'date': 'Thu, Dec 16', 'sunrise': '08:02am', 'sunset': '03:51pm'}
     [Arguments]  ${lon}
     ...          ${lat}
-    ${api_all_weather_forecast} =  Onecall.Get 8 Days Forecast For A City  lon=${lon}  lat=${lat}
+    ${api_all_weather_forecast} =  OnecallEndpoint.Get 8 Days Forecast For A City  lon=${lon}  lat=${lat}
     @{api_all_weather_forecast} =  Collections.Convert To List  ${api_all_weather_forecast}
     @{api_forecast} =  Create List
     FOR  ${index}  IN RANGE  5
@@ -106,7 +104,6 @@ Get 5 Days Sunrise and Sunset Forecast For A City By API
         Append To List  ${api_forecast}  ${api_day_dict}
     END
     [Return]  @{api_forecast}
-
 
 Check Received Longitude And Latitude Equal To Expected
     [Documentation]  Check that received Longitude And Latitude are equal to expected
