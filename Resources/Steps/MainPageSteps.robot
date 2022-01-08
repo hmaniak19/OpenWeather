@@ -73,12 +73,6 @@ Get Sunrise And Sunset For Selected Day
     &{web_day_dict} =  Create Dictionary  date=${selected_date}  sunrise=${sunrise_time}  sunset=${sunset_time}
     [Return]  &{web_day_dict}
 
-Get Sunrise And Sunset For The Next Day
-    [Arguments]  ${current_day}
-
-Get Sunrise And Sunset For The Previous Day
-    [Arguments]  ${current_day}
-
 Change Units To Imperial
     [Documentation]  Click on Imperial and check that loader disappears
     MainPage.Click Imperial
@@ -91,20 +85,21 @@ Verify Main Page Loaded
 
 Check Loader Disappears
     [Documentation]  Check that loader appears and disappears when all info is loaded on the page
-#    Wait Until Page Contains Element    ${START_LOADER_LOCATOR}
+    Wait Until Page Contains Element    ${START_LOADER_LOCATOR}
     Wait Until Page Does Not Contain Element    ${START_LOADER_LOCATOR}  timeout=10 seconds
 
-Verify Correct City Displayed
+Verify Search Result City
     [Documentation]  Verifies that city given in Arguments is displayed on the Main Page
     [Arguments]  ${city_name}
     ${city_name_in_web} =  MainPageSteps.Get Current City Name
     Should Be Equal    ${city_name_in_web}    ${city_name}
 
-Verify Current Date Displayed
+Verify Search Result Date
     [Documentation]  Verifies today's date is displayed on the Main Page
     ${current_date_in_web} =  MainPageSteps.Get Current Date
-    ${current_date} =  DateTime.Get Current Date  result_format=%b %d
+    ${current_date} =  DateTime.Get Current Date  result_format=%b %-d
     Should Be Equal  ${current_date_in_web}  ${current_date}
+
 
 
 

@@ -35,8 +35,8 @@ Get 8 Days Forecast For A City
     MainPageSteps.Search For The City  city_name=${CITY_NAME}
     ...                                country=${COUNTRY}
     ...                                city_id=${CITY_ID}
-    MainPageSteps.Verify Correct City Displayed  city_name=${CITY_NAME}
-    MainPageSteps.Verify Current Date Displayed
+    MainPageSteps.Verify Search Result City  city_name=${CITY_NAME}
+    MainPageSteps.Verify Search Result Date
     BuiltIn.Log  Step 2: I get 8 days forecast in web and check it is the same as from API
     @{web_forecast} =  MainPageSteps.Get 8 Days Forecast In Web
     @{api_forecast} =  ApiSteps.Get 8 Days Forecast For A City By API  lon=${city_lon}
@@ -51,27 +51,16 @@ Get 5 Days Sunrise and Sunset Forecast For A City
     MainPageSteps.Search For The City  city_name=${CITY_NAME}
     ...                                country=${COUNTRY}
     ...                                city_id=${CITY_ID}
-    MainPageSteps.Verify Correct City Displayed  city_name=${CITY_NAME}
-    MainPageSteps.Verify Current Date Displayed
+    MainPageSteps.Verify Search Result City  city_name=${CITY_NAME}
+    MainPageSteps.Verify Search Result Date
     BuiltIn.Log  Step 2: I get sunrise and sunset time for today and check it is the same as from API
-    MainPage.Open Detailed Weather For Current Date
-    ${today_forecast} =  MainPageSteps.Get Sunrise And Sunset For Selected Day
-    Check Sunrise And Sunset In WEB Equal To API  WEB_day_forecast_dict=${today_forecast}
-    ...                                           API_day_forecast_dict=${API_forecast[0]}
+    MixedSteps.Check Sunrise And Sunset Time For Today  API_Forecast=${API_Forecast}
     BuiltIn.Log  Step 3: I click on the next day 4 times, get its sunrise and sunset time and check it is the same as from API
-    FOR  ${index}  IN RANGE  4
-        MainPage.Click On The Next Day In Options Scroller
-        ${daily_forecast} =  MainPageSteps.Get Sunrise And Sunset For Selected Day
-        Check Sunrise And Sunset In WEB Equal To API  WEB_day_forecast_dict=${daily_forecast}
-        ...                                           API_day_forecast_dict=${API_Forecast[${index+1}]}
-    END
+    MixedSteps.Check Sunrise And Sunset Time For Future Days Range    days_range=4
+    ...                                                               API_Forecast=${API_Forecast}
     BuiltIn.Log  Step 4: I click on the previous day 3 times, get its sunrise and sunset time and check it is the same as from API
-    FOR  ${index}  IN RANGE  -2  -5  -1
-        MainPage.Click On The Previous Day In Options Scroller
-        ${daily_forecast} =  MainPageSteps.Get Sunrise And Sunset For Selected Day
-        Check Sunrise And Sunset In WEB Equal To API  WEB_day_forecast_dict=${daily_forecast}
-        ...                                           API_day_forecast_dict=${API_Forecast[${index}]}
-    END
+    MixedSteps.Check Sunrise And Sunset Time For Previous Days Range  days_range=3
+    ...                                                               API_Forecast=${API_Forecast}
 
 
 *** Keywords ***
@@ -91,13 +80,6 @@ Precondition For Test "Get 5 Days Sunrise and Sunset Forecast For A City"
     ${API_Forecast} =  ApiSteps.Get 5 Days Sunrise and Sunset Forecast For A City By API    lon=${CITY_LON}
     ...                                                                                     lat=${CITY_LAT}
     Set Test Variable    ${API_Forecast}
-
-Check Sunrise And Sunset In WEB Equal To API
-    [Documentation]  Check That Date, Sunrise And Sunset Of A Day From Web Are Equal Date From API
-    [Arguments]  ${WEB_day_forecast_dict}  ${API_day_forecast_dict}
-    Should Be Equal    ${WEB_day_forecast_dict.date}    ${API_day_forecast_dict.date}
-    Should Be Equal    ${WEB_day_forecast_dict.sunrise}    ${API_day_forecast_dict.sunrise}
-    Should Be Equal    ${WEB_day_forecast_dict.sunset}    ${API_day_forecast_dict.sunset}
 
 Check 8 Days Forecast In Web Equal To API
     [Documentation]  Check That Date, Sunrise And Sunset Of A Day From Web Are Equal Date From API

@@ -4,6 +4,7 @@ Resource  ../../Tests_Imports.robot
 
 *** Variables ***
 ${USER_NAV_TABS_LOCATOR} =  //ul[@id="myTab"]
+${HOME_URL} =  https://home.openweathermap.org/
 
 
 *** Keywords ***

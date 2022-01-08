@@ -9,7 +9,3 @@ def convert_timestamp_to_time(timestamp):
     date = datetime.utcfromtimestamp(timestamp).replace(tzinfo=london_timezone)
     formatted_datetime = date.strftime("%I:%M%p").lower()
     return formatted_datetime
-
-my_list = [0, 1, 2, 3, 4]
-print(my_list[-2])
-

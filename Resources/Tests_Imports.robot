@@ -1,5 +1,6 @@
 *** Settings ***
-Resource  ./API/Endpoints.robot
+Resource  ./API/Onecall.robot
+Resource  ./API/Weather.robot
 Resource  ./WEB/PO/LoginPage.robot
 Resource  ./WEB/PO/TopNav.robot
 Resource  ./WEB/PO/HomePage.robot
