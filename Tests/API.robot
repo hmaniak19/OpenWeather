@@ -1,6 +1,6 @@
 *** Settings ***
 Resource  ../Resources/Tests_Imports.robot
-Library    Collections
+
 
 *** Variables ***
 ${CITY_NAME} =  Belmopan

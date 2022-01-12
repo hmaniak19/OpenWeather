@@ -5,15 +5,22 @@ that check the funcionality of **openweathermap.org** website
 using **Robot Framework**.
 
 ### Structure
-- Tests
-- Resources
-    - PageObject
-    - Steps
-    - Global Variables - to test with your user you could update variables here
-    - Tests Imports
-    
-- Results
-![OpenWeather Project](https://user-images.githubusercontent.com/85609637/139724806-ac91e2a3-5937-4c53-a0a8-84c14280251a.png)  
+├── Resources
+│   ├── API
+│   │   ├── ApiSteps.robot
+│   │   └── Endpoints
+│   ├── WEB
+│   │   ├── PO
+│   │   └── WebSteps
+│   ├── MixedSteps.robot
+│   ├── ConvertTools.py
+│   ├── Global_Variables.robot
+│   ├── Tests_Imports.robot
+├── Results
+├── Tests
+│   ├── API
+│   ├── WEB
+│   ├── End_To_End
 
 ### Requirements
 

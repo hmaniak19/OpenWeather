@@ -1,4 +1,6 @@
-Resource  ../Tests_Imports.robot
+*** Settings ***
+Resource  ../../Tests_Imports.robot
+
 
 *** Keywords ***
 Send One Call Request
