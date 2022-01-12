@@ -1,5 +1,5 @@
-*** Settings ***
 Resource  ../Tests_Imports.robot
+
 
 *** Keywords ***
 Send Get Weather Request
@@ -24,12 +24,11 @@ Get Weather By Name
     ${response} =    Send Get Weather Request  params=${params}
     [Return]  ${response.json()}
 
-
 Get Weather By ID
     [Documentation]  Get response from GET /weather request with City ID param
     [Arguments]  ${id}
     ${params} =    Create Dictionary    id=${id}   appid=${API_KEY}
-    ${response} =    Send /Get Weather Request  params=${params}
+    ${response} =    Send Get Weather Request  params=${params}
     [Return]  ${response.json()}
 
 Get Weather By Coords
@@ -37,5 +36,5 @@ Get Weather By Coords
     [Arguments]  ${lon}
     ...          ${lat}
     ${params} =    Create Dictionary    lat=${lat}  lon=${lon}   appid=${API_KEY}
-    ${response} =    Send /Get Weather Request  params=${params}
+    ${response} =    Send Get Weather Request  params=${params}
     [Return]  ${response.json()}

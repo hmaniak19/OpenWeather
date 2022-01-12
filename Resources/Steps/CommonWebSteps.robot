@@ -7,7 +7,7 @@ Begin Web Test
     [Documentation]  Open browser, navigate to Base URL
     Open Browser  about:blank   ${BROWSER}
     MainPage.Navigate To Base URL
-    MainPage.Verify Main Page Loaded
+    MainPageSteps.Verify Main Page Loaded
     TopNav.Verify Logo Loaded
 
 End Web Test
