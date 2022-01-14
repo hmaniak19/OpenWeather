@@ -6,21 +6,21 @@ using **Robot Framework**.
 
 ### Structure
 ├── Resources
-│   ├── API
-│   │   ├── ApiSteps.robot
-│   │   └── Endpoints
-│   ├── WEB
-│   │   ├── PO
-│   │   └── WebSteps
-│   ├── MixedSteps.robot
-│   ├── ConvertTools.py
-│   ├── Global_Variables.robot
-│   ├── Tests_Imports.robot
+│         ├── API
+│         │    ├── ApiSteps.robot
+│         │    └── Endpoints
+│         ├── WEB
+│         │    ├── PO
+│         │    └── WebSteps
+│         ├── MixedSteps.robot
+│         ├── ConvertTools.py
+│         ├── Global_Variables.robot
+│         ├── Tests_Imports.robot
 ├── Results
 ├── Tests
-│   ├── API
-│   ├── WEB
-│   ├── End_To_End
+│         ├── API
+│         ├── WEB
+│         ├── End_To_End
 
 ### Requirements
 
