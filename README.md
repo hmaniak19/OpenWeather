@@ -5,8 +5,8 @@ that check the funcionality of **openweathermap.org** website
 using **Robot Framework**.
 
 ### Structure
-├── Resources
-│         ├── API
+├── Resources 
+│         ├── API 
 │         │    ├── ApiSteps.robot
 │         │    └── Endpoints
 │         ├── WEB
